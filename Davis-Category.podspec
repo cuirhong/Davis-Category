@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-s.name        = 'Davsi-Category'
+s.name        = 'Davis-Category'
 
 s.version    = '0.0.1'
 
