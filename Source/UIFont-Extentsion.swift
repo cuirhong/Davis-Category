@@ -52,7 +52,12 @@ public extension UIFont{
                 font = UIFont.boldSystemFont(ofSize: size)
             }else{
                 if let newWeight = weight{
-                    font = UIFont.systemFont(ofSize: size, weight: newWeight)
+                    if #available(iOS 8.2, *) {
+                        font = UIFont.systemFont(ofSize: size, weight: newWeight)
+                    } else {
+                        font = UIFont.systemFont(ofSize: size)
+                       
+                    }
                 }else{
                     font = UIFont.systemFont(ofSize: size)
                 }

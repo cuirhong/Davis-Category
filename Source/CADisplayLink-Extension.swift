@@ -15,8 +15,11 @@ public extension CADisplayLink{
 
     class func displayLink(target:Any,selector:Selector,second:Int,isPause:Bool=false)->CADisplayLink{
         let link = CADisplayLink(target: target, selector: selector)
-     
-        link.preferredFramesPerSecond = second
+        if #available(iOS 10.0, *){
+            link.preferredFramesPerSecond = second
+        }else{
+            link.frameInterval = second
+        }
         link.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
       
         link.isPaused = isPause
