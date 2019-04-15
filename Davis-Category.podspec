@@ -8,7 +8,7 @@ s.authors    = { 'davis' => 'cuirhong@126.com' }
 
 s.homepage    = 'https://github.com/cuirhong/Davis-Category'
 
-s.summary    = 'a load hud for wechat video.'
+s.summary    = 'davis some category'
 
 s.source      = { :git => 'https://github.com/cuirhong/Davis-Category.git',
 
