@@ -44,13 +44,13 @@ public extension String{
         return ""
     }
     
-    /// 32位MD5加密 isUpper:结果是否大写
-    func md5For32Bate(isUpper:Bool=true)->String{
+    /// 32位MD5加密 isUpper:结果是否大写 默认是小写
+    func MD5For32Bate(isUpper:Bool=false)->String{
         return handerMD5(isUpper: isUpper)
     }
     
-    /// 16位MD5加密 isUpper:结果是否大写
-    func MD5For16Bate(isUpper:Bool=true)->String{
+    /// 16位MD5加密 isUpper:结果是否大写 默认是小写
+    func MD5For16Bate(isUpper:Bool=false)->String{
         return handerMD5(isUpper: isUpper, is32: false)
     }
     
@@ -76,9 +76,9 @@ public extension String{
             //16位的md5
             md5String = md5String.subString(start: 8, length: 16)
         }
-        if isUpper == false{
+        if isUpper == true{
             //如果是小写
-            md5String = md5String.lowercased()
+            md5String = md5String.uppercased()
         }
         return md5String
     }
