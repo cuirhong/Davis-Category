@@ -20,7 +20,7 @@ public extension String{
     }
     
     
-    /// md5加密 Int32位
+    /// md5加密 Int32位 即将过期,请使用md5For32Bate
     @available(*, deprecated, message: "即将过期,请使用md5For32Bate")
     func md5String() -> String{
 

@@ -11,7 +11,51 @@ import UIKit
 // MARK: - 获取
 public extension UIDevice {
     
-    var modelName: String {
+    enum DD_DeviceType {
+        case iPhone4;
+        case iPhone4s;
+        case iPhone5;
+        case iPhone5s;
+        case iPhone5c;
+        case iPhoneSE;
+        case iPhone6;
+        case iPhone6s;
+        case iPhone6sP
+        case iPhone6P;
+        case iPhone7;
+        case iPhone7p;
+        case iPhoneX;
+        case iPhoneXs;
+        case iPhoneXr;
+        case Simulator;
+        case Other;
+        
+    }
+    
+    /// 获取当前设备类型
+    static func currentDevice()->DD_DeviceType{
+        let identifier = UIDevice.currentDeviceName()
+        switch identifier {
+        case "iPhone3,1", "iPhone3,2", "iPhone3,3":     return .iPhone4
+        case "iPhone4,1":                               return .iPhone4s
+        case "iPhone5,1", "iPhone5,2":                  return .iPhone5
+        case "iPhone5,3", "iPhone5,4":                  return .iPhone5c
+        case "iPhone6,1", "iPhone6,2":                  return .iPhone5s
+        case "iPhone7,2":                               return .iPhone6
+        case "iPhone7,1":                               return .iPhone6P
+        case "iPhone8,1":                               return .iPhone6s
+        case "iPhone8,2":                               return .iPhone6sP
+        case "iPhone8,4":                               return .iPhoneSE
+        case "iPhone9,1":                               return .iPhone7
+        case "iPhone9,2":                               return .iPhone7p
+        case "i386", "x86_64":                          return .Simulator
+        case "iPhone X":                                return .iPhoneX
+        default:                                        return .Other
+        }
+    }
+    
+    /// 获取当前设备的名字
+    static func currentDeviceName()->String{
         var systemInfo = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
@@ -20,7 +64,7 @@ public extension UIDevice {
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
         
-      
+        
         switch identifier {
         case "iPod5,1":                                 return "iPod Touch 5"
         case "iPod7,1":                                 return "iPod Touch 6"
@@ -48,109 +92,39 @@ public extension UIDevice {
         case "iPad6,7", "iPad6,8":                      return "iPad Pro"
         case "AppleTV5,3":                              return "Apple TV"
         case "i386", "x86_64":                          return "Simulator"
+        case "iPhone10,3", "iPhone10,6":                return "iPhone X"
         default:                                        return identifier
         }
     }
     
+    /// 是否是小于iPhone6的尺寸（5/4/SE等）
+    static func isLessiPhone6Size()->Bool{
+        if UIScreen.main.bounds.size.width < 375{
+            return true
+        }
+        return false
+    }
+    
+    /// 是否是大于iPhone6的尺寸
+    static func isMoreiPhone6Size()->Bool{
+        if UIScreen.main.bounds.size.width > 375{
+            return true
+        }
+        return false
+    }
+    
+    /// 是否是iPhone6的尺寸
+    static func isiPhone6Size()->Bool{
+        if UIScreen.main.bounds.size.width == 375{
+            return true
+        }
+        return false
+    }
+    
+    
+    
+    
 }
-
-
-/**
- * 判断是iphone4
- */
-let ihpone4:Bool =  {
-    let modelName = UIDevice.current.modelName
-    
-    guard modelName == "iPhone 4", modelName == "iPhone 4s"  else {
-        return false
-    }
-    
-    return true
-    
-}()
-
-/**
- * 判断是iphone5
- */
-let ihpone5:Bool =  {
-    let modelName = UIDevice.current.modelName
-    
-    guard modelName == "iPhone 5", modelName == "iPhone 5c",modelName == "iPhone 5s",modelName == "iPhone SE"  else {
-        return false
-    }
-    
-    return true
-    
-}()
-
-/**
- * 判断是iphone6
- */
-let ihpone6:Bool =  {
-    let modelName = UIDevice.current.modelName
-    
-    guard modelName == "iPhone 6", modelName == "iPhone 6s"  else {
-        return false
-    }
-    
-    return true
-    
-}()
-
-/**
- * 判断是iphone6p
- */
-let ihpone6p:Bool =  {
-    let modelName = UIDevice.current.modelName
-    
-    guard modelName == "iPhone 6 Plus"  else {
-        return false
-    }
-    
-    return true
-    
-}()
-
-/**
- * 判断是iphone7
- */
-let ihpone7:Bool =  {
-    let modelName = UIDevice.current.modelName
-    
-    guard modelName == "iPhone 7"  else {
-        return false
-    }
-    
-    return true
-    
-}()
-
-/**
- * 判断是iphone7p
- */
-let ihpone7p:Bool =  {
-    let modelName = UIDevice.current.modelName
-    
-    guard modelName == "iPhone 7 Plus"  else {
-        return false
-    }
-    
-    return true
-    
-}()
-/**
- * 判断是iphoneSE
- */
-let ihponeSE:Bool =  {
-    let modelName = UIDevice.current.modelName
-    
-    guard modelName == "iPhone SE"  else {
-        return false
-    }
-    
-    return true
-    
-}()
 
 
 
