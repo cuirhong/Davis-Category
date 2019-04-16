@@ -97,19 +97,27 @@ public extension UIDevice {
         }
     }
     
+    
+    
+    
     /// 是否是小于iPhone6的尺寸（5/4/SE等）
     static func isLessiPhone6Size()->Bool{
-        if UIScreen.main.bounds.size.width < 375{
-            return true
+        let currentType = UIDevice.currentDevice()
+        if currentType == .iPhone4s || currentType == .iPhone4 || currentType == .iPhone5 || currentType == .iPhone5s || currentType == .iPhone5c{
+             return true
         }
+        
         return false
+ 
     }
     
     /// 是否是大于iPhone6的尺寸
     static func isMoreiPhone6Size()->Bool{
-        if UIScreen.main.bounds.size.width > 375{
+        let currentType = UIDevice.currentDevice()
+        if currentType == .iPhone4s || currentType == .iPhone4 || currentType == .iPhone5 || currentType == .iPhone5s || currentType == .iPhone5c{
             return true
         }
+        
         return false
     }
     
