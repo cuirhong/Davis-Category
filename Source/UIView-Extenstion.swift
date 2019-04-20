@@ -54,13 +54,26 @@ public extension UIView{
         self.layer.mask = maskLayer
     }
     
-    
+    /// 初始化一个view
     convenience init(bgColor:UIColor?,corner:CGFloat=0){
         self.init(frame: CGRect.zero)
         backgroundColor = bgColor
         if corner > 0{
             dd_viewCornerRadius = corner
         }
+    }
+    
+    /// 截取屏幕
+    func screenshotToImage()->UIImage?{
+        UIGraphicsBeginImageContext(bounds.size)
+        if let content = UIGraphicsGetCurrentContext(){
+            layer.render(in: content)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return image
+        }
+        return nil
+      
     }
     
 
