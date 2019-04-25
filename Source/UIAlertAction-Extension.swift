@@ -10,8 +10,18 @@ import Foundation
 import UIKit
 public extension UIAlertAction{
     
-    convenience init(title:String?,titleColor:UIColor?=nil,titleFont:UIFont?=nil,style:UIAlertAction.Style,handler:((UIAlertAction) -> Void)? = nil,isEnabled:Bool=true) {
-        self.init()
+    convenience init(title:String?,image:UIImage?=nil, titleColor:UIColor?=nil,style:UIAlertAction.Style,handler:((UIAlertAction) -> Void)? = nil,isEnabled:Bool=true) {
+        self.init(title: title, style: style, handler: handler)
+        
+        if let image = image{
+           setValue(image, forKey: "image")
+        }
+ 
+        if let color = titleColor{
+           setValue(color, forKey: "titleTextColor")
+        }
+        
+        
     }
     
     
