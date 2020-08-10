@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
 s.name        = 'Davis-Category'
 
-s.version    = '0.0.3'
+s.version    = '1.0.0'
 
 s.authors    = { 'davis' => 'cuirhong@126.com' }
 
