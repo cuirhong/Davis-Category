@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public extension UIView{
+@objc public extension UIView{
 
     /// 设置view的圆角
     @IBInspectable var dd_viewCornerRadius: CGFloat {
@@ -45,7 +45,7 @@ public extension UIView{
     
 
     /// 设置view的某一个边角为圆角
-    func dd_rectCorner(corner:UIRectCorner,radii:CGSize){
+   @objc func dd_rectCorner(corner:UIRectCorner,radii:CGSize){
         let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corner, cornerRadii: radii)
         let maskLayer = CAShapeLayer()
         maskLayer.frame = self.bounds
@@ -55,7 +55,7 @@ public extension UIView{
     }
     
     /// 初始化一个view
-    convenience init(bgColor:UIColor?,corner:CGFloat=0){
+   @objc convenience init(bgColor:UIColor?,corner:CGFloat=0){
         self.init(frame: CGRect.zero)
         backgroundColor = bgColor
         if corner > 0{
@@ -64,7 +64,7 @@ public extension UIView{
     }
     
     /// 截取屏幕
-    func screenshotToImage()->UIImage?{
+   @objc func screenshotToImage()->UIImage?{
         UIGraphicsBeginImageContext(bounds.size)
         if let content = UIGraphicsGetCurrentContext(){
             layer.render(in: content)

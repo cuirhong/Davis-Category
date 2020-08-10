@@ -9,11 +9,9 @@
 import Foundation
 import Photos
 
-public extension PHAsset{
-    
-    
+@objc public extension PHAsset{
     /// 获取图片
-    func getImageDataFromAsset(num:Int,completion:@escaping (_ data: Data?,_ requestImageID:String?,_ num:Int) -> Void){
+   @objc func getImageDataFromAsset(num:Int,completion:@escaping (_ data: Data?,_ requestImageID:String?,_ num:Int) -> Void){
         
         let manager = PHImageManager.default()
         let options = PHImageRequestOptions()
@@ -28,10 +26,6 @@ public extension PHAsset{
         }
         
     }
-
-    
-    
-
 }
 
 

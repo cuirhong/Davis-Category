@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
-public extension UIAlertAction{
+@objc public extension UIAlertAction{
     
-    convenience init(title:String?,image:UIImage?=nil, titleColor:UIColor?=nil,style:UIAlertAction.Style,handler:((UIAlertAction) -> Void)? = nil,isEnabled:Bool=true) {
+   @objc convenience init(title:String?,image:UIImage?=nil, titleColor:UIColor?=nil,style:UIAlertAction.Style,handler:((UIAlertAction) -> Void)? = nil,isEnabled:Bool=true) {
         self.init(title: title, style: style, handler: handler)
         
         if let image = image{

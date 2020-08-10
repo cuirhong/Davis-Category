@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-public extension UISlider{
-    convenience init(maximumValue:Float=1.0,minimumValue:Float=0.0,currentValue:Float=0.0,target: Any?=nil ,selector: Selector?=nil) {
+@objc public extension UISlider{
+   @objc convenience init(maximumValue:Float=1.0,minimumValue:Float=0.0,currentValue:Float=0.0,target: Any?=nil ,selector: Selector?=nil) {
         self.init()
         self.maximumValue = maximumValue
         self.minimumValue = minimumValue

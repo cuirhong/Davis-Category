@@ -8,22 +8,116 @@
 
 import UIKit
 import CommonCrypto
+
+@objc public extension NSString{
+    ///获取本地文件的路径
+    static func localPath(_ localFileName:String) -> String {
+        return String.localPath(localFileName)
+    }
+    
+    /// 32位MD5加密 isUpper:结果是否大写 默认是小写
+    @objc func MD5For32Bate(isUpper:Bool=false)->String{
+        return (self as String).handerMD5(isUpper: isUpper)
+    }
+    
+    /// 16位MD5加密 isUpper:结果是否大写 默认是小写
+    @objc func MD5For16Bate(isUpper:Bool=false)->String{
+        return (self as String).handerMD5(isUpper: isUpper, is32: false)
+    }
  
+    /// 截取字符串
+    @objc func subString(start:Int, length:Int) -> String {
+        return (self as String).subString(start: start, length: length)
+    }
+ 
+    /// 获取本地缓存的地址
+    static func localCachePath(fileName:String)->String{
+        return String.localCachePath(fileName: fileName)
+    }
+    
+    /// 本地文件地址
+    static func localDocumentPath(fileName:String)->String{
+        return String.localDocumentPath(fileName: fileName)
+    }
+    
+    
+    /// 获取本地零时文件地址
+    @objc func localTempPath()->String{
+        return (self as String).localTempPath()
+    }
+    
+    
+    /// 字符串得到Date
+    static func getDateFromString(dateStr:String?="",formatter:String?="yyyy-MM-dd HH:mm:ss",isLocal:Bool=true)->Date?{
+        return String.getDateFromString(dateStr: dateStr, formatter: formatter, isLocal: isLocal)
+    }
+    
+    /// 从Int获取星期几的字符串
+    static func weekStringFromInt(date:Int)->String{
+        return String.weekStringFromInt(date: date)
+    }
+    
+    /// 从int转换成string
+    static func getString(intData:Int) -> String{
+        return String.getString(intData: intData)
+    }
+    
+    
+    /// 获取字符串的长度
+    @objc func getLenth()->Int{
+        return (self as String).getLenth()
+    }
+    
+    
+    /// 去掉空格键
+    @objc func replace(preString:String,replaceString:String)->String{
+        let string = (self as NSString).replacingOccurrences(of: preString, with: replaceString)
+        return string
+    }
+    
+    /// 比较时间   return 刚刚/几分钟前/几小时前/几天前...
+    static func comparedDate(dateStr:String="",dateFormatter:String="yyyy-MM-dd HH:mm:ss",timeInterval:TimeInterval)->String{
+        return String.comparedDate(dateStr: dateStr, dateFormatter: dateFormatter, timeInterval: timeInterval)
+    }
+    
+    
+    /// 根据字符串得到controller
+    @objc func getController()->UIViewController?{
+        return (self as String).getController()
+    }
+    
+    /// 是否是电话号码
+    static func isPhoneNumber(_ phoneNum:String?)->Bool{
+        return String.isPhoneNumber(phoneNum)
+    }
+    
+    
+    /// 两个字符串是否相等
+    static func isSameString(firstStr:String?,secondStr:String?)->Bool{
+        return String.isSameString(firstStr: firstStr, secondStr: secondStr)
+    }
+    
+}
+
+
+
+
+
 public extension String{
- 
+    
     ///获取本地文件的路径
     static func localPath(_ localFileName:String) -> String {
         if  let path = Bundle.main.path(forResource: localFileName, ofType: nil)  {
             return path;
         }
-            return ""
+        return ""
     }
     
     
     /// md5加密 Int32位 即将过期,请使用md5For32Bate
     @available(*, deprecated, message: "即将过期,请使用md5For32Bate")
     func md5String() -> String{
-
+        
         if let str = self.cString(using: String.Encoding.utf8){
             let strLen = CUnsignedInt(self.lengthOfBytes(using: String.Encoding.utf8))
             let digestLen = Int(CC_MD5_DIGEST_LENGTH)
@@ -40,7 +134,7 @@ public extension String{
             
             return String(hash)
         }
-    
+        
         return ""
     }
     
@@ -56,7 +150,7 @@ public extension String{
     
     
     /// 统一处理md5
-    private func handerMD5(isUpper:Bool,is32:Bool=true)->String{
+    func handerMD5(isUpper:Bool,is32:Bool=true)->String{
         var md5String = ""
         if let str = self.cString(using: String.Encoding.utf8){
             let strLen = CUnsignedInt(self.lengthOfBytes(using: String.Encoding.utf8))
@@ -131,7 +225,7 @@ public extension String{
     func docStr()->String{
         let documentPaths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory,
                                                                 FileManager.SearchPathDomainMask.userDomainMask, true)
-       
+        
         let filePath = (documentPaths[0] as NSString).appendingPathComponent(self)
         return filePath
     }
@@ -150,8 +244,8 @@ public extension String{
         let filePath = (path as NSString).appendingPathComponent(self)
         return filePath
     }
-
-   
+    
+    
     /// 字符串得到Date
     static func getDateFromString(dateStr:String?="",formatter:String?="yyyy-MM-dd HH:mm:ss",isLocal:Bool=true)->Date?{
         let f = DateFormatter()
@@ -167,7 +261,7 @@ public extension String{
     }
     
     /// 从Int获取星期几的字符串
-   static func weekStringFromInt(date:Int)->String{
+    static func weekStringFromInt(date:Int)->String{
         switch date {
         case 2:
             return  "一"
@@ -187,9 +281,9 @@ public extension String{
         default:
             return "--"
         }
-    
+        
     }
- 
+    
     /// 从int转换成string
     static func getString(intData:Int?=nil,int64Data:Int64?=nil) -> String{
         if intData != nil{
@@ -201,20 +295,20 @@ public extension String{
         }
     }
     
-  
-    /// 获取字符串的长度
-     func getLenth()->Int{
-     
-        if  self.lengthOfBytes(using: String.Encoding.utf8) == 0{
-         return 0
-        }
     
+    /// 获取字符串的长度
+    func getLenth()->Int{
+        
+        if  self.lengthOfBytes(using: String.Encoding.utf8) == 0{
+            return 0
+        }
+        
         let string = NSString.init(string: self)
         return string.length
-    
+        
     }
     
-
+    
     /// 去掉空格键
     func replace(preString:String,replaceString:String)->String{
         let string = (self as NSString).replacingOccurrences(of: preString, with: replaceString)
@@ -222,10 +316,10 @@ public extension String{
     }
     
     
- 
+    
     /// 比较时间   return 刚刚/几分钟前/几小时前/几天前...
     static func comparedDate(dateStr:String?=nil,dateFormatter:String?="yyyy-MM-dd HH:mm:ss",timeInterval:TimeInterval?=nil)->String{
-         var date1 = Date()
+        var date1 = Date()
         if  let formatter  = dateFormatter{
             let newDateFormatter = DateFormatter()
             newDateFormatter.dateFormat = formatter
@@ -241,10 +335,10 @@ public extension String{
         let newTimeInterval = date2.timeIntervalSince(date1)
         var dateStr = ""
         if newTimeInterval <= 60{
-          dateStr = "刚刚"
+            dateStr = "刚刚"
         }else if newTimeInterval < 60*60{
             let mins:Int = Int(newTimeInterval/60)
-          dateStr = String(format: "%d分钟前", mins)
+            dateStr = String(format: "%d分钟前", mins)
         }else if newTimeInterval < 60*60*24{
             let hour = Int(newTimeInterval/60/60)
             dateStr = String(format: "%d小时前", hour)
@@ -258,7 +352,7 @@ public extension String{
                 if let monthSth = com.month,let dayStr = com.day, let hourStr = com.hour,let minuteStr = com.minute{
                     dateStr = String(format: "%02d月%02d日 %02d:%02d", monthSth,dayStr,hourStr,minuteStr)
                     if comYear != com2Year{//不是当年
-                      dateStr = String(format: "%d年%@", comYear,dateStr)
+                        dateStr = String(format: "%d年%@", comYear,dateStr)
                     }
                 }
             }
@@ -269,7 +363,7 @@ public extension String{
     
     /// 根据字符串得到controller
     func getController()->UIViewController?{
-      
+        
         if self.getLenth() == 0{
             return nil 
         }
@@ -279,7 +373,7 @@ public extension String{
             //告诉编译器实际的类型
             let trueClass = vcClass as? UIViewController.Type
             
-           return trueClass?.init()
+            return trueClass?.init()
         }
         return nil
     }
@@ -289,28 +383,28 @@ public extension String{
         if phoneNum == nil{
             return false
         }
-       
+        
         let scan = Scanner(string: phoneNum!)
         var intVar:Int = 0
         //是否是11位 是否都是数字 
         return phoneNum?.lengthOfBytes(using: String.Encoding.utf8) == 11 && scan.scanInt(&intVar) && scan.isAtEnd
     }
- 
+    
     
     /// 两个字符串是否相等
     static func isSameString(firstStr:String?,secondStr:String?)->Bool{
         if firstStr == nil || secondStr == nil{
             return false
         }
-
+        
         if firstStr == secondStr{
             return true
         }
         
-         return false
+        return false
     }
     
-
+    
 }
 
 

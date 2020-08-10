@@ -8,27 +8,18 @@
 
 import UIKit
 
-public extension UILabel
+@objc public extension UILabel
 {
-    convenience init(text: String?,font: UIFont?, textColor: UIColor?,bgColor:UIColor?=nil,textAlignment:NSTextAlignment?=nil,lineMode:NSLineBreakMode?=nil,numLine:Int?=nil) {
+    @objc convenience init(text: String?,font: UIFont?, textColor: UIColor?,bgColor:UIColor?=nil,textAlignment:NSTextAlignment = .left,lineMode:NSLineBreakMode = NSLineBreakMode.byTruncatingTail,numLine:Int = 0) {
         self.init()
         
         self.text = text
         self.font = font
         self.textColor = textColor
         
-        if let alignment = textAlignment {
-            self.textAlignment = alignment
-        }
-        
-        if let mode = lineMode{
-            lineBreakMode = mode
-        }
-        
-        if let line = numLine{
-            numberOfLines = line 
-        }
-        
+        self.textAlignment = textAlignment
+        lineBreakMode = lineMode
+        numberOfLines = numLine
         if bgColor != nil{
             backgroundColor = bgColor
         }
@@ -37,19 +28,19 @@ public extension UILabel
     
     
     /// 设置不同的文本
-    func setDiffirentText(needText:String,systemfontSize:CGFloat?=nil,boldFontSize:CGFloat?=nil, fontName:String?=nil,fontColor:UIColor?=nil){
+    @objc func setDiffirentText(needText:String,systemfontSize:Float=0.0,boldFontSize:Float=0.0, fontName:String?=nil,fontColor:UIColor?=nil){
         let string = self.text ?? ""
         let attributedString = self.attributedText as? NSMutableAttributedString ?? NSMutableAttributedString.init(string: string)
         
         let range = (string as NSString).range(of: needText)
         
         var font:UIFont? = nil
-        if let newSize = systemfontSize{
-            font = UIFont.font(systemSize: newSize, fontName: fontName)
+        if systemfontSize > 0{
+            font = UIFont.font(systemSize: CGFloat(systemfontSize), fontName: fontName)
             
-        }else if let boldSize = boldFontSize{
+        }else if boldFontSize > 0{
             
-            font = UIFont.font(psboldSize: boldSize, fontName: fontName)
+            font = UIFont.font(psboldSize: CGFloat(boldFontSize), fontName: fontName)
         }
         
         if let newFont = font{
@@ -63,11 +54,11 @@ public extension UILabel
     
     
     ///  计算label的宽度和高度 size是自己label的size(一般只固定一个宽或高,计算另外一个)
-    func labelSize(text:String,size:CGSize?=nil, font:UIFont?) -> CGRect{
+    @objc func labelSize(text:String,size:CGSize=CGSize.zero, font:UIFont?) -> CGRect{
         var rect = CGRect();
         var newSize:CGSize = CGSize.init(width: 100000, height: 100000)
-        if size != nil {
-            newSize = size!
+        if size != CGSize.zero {
+            newSize = size
         }
         
         let attributes = [NSAttributedString.Key.font: font]//计算label的字体
@@ -76,7 +67,7 @@ public extension UILabel
     }
     
     //MARK:- 设置行间距
-    func setLineSpace(lineSpace:CGFloat){
+    @objc  func setLineSpace(lineSpace:CGFloat){
         
         let attrStrig = (self.attributedText as? NSMutableAttributedString) ??  NSMutableAttributedString(string: text ?? "")
         

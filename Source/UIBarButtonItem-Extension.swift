@@ -8,9 +8,9 @@
 
 import UIKit
 
-public extension UIBarButtonItem {
+@objc public extension UIBarButtonItem {
     
-    convenience init(imageName : String, highlightedImage : String? = "" , size : CGSize = CGSize.zero, target:UIViewController? = nil, action:Selector?=nil) {
+   @objc convenience init(imageName : String, highlightedImage : String? = "" , size : CGSize = CGSize.zero, target:UIViewController? = nil, action:Selector?=nil) {
         let btn = UIButton()
         btn.setImage(UIImage(named : imageName), for: .normal)
         if highlightedImage != ""{

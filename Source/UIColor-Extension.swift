@@ -8,14 +8,14 @@
 
 import UIKit
 
-public extension UIColor {
+@objc public extension UIColor {
     
     //MARK:rgb颜色
-    convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
+  @objc  convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
         self.init(red: r/255.0 ,green: g/255.0 ,blue: b/255.0 ,alpha:1.0)
     }
    //MARK:纯色（用于灰色）
-    convenience init(gray: CGFloat) {
+  @objc  convenience init(gray: CGFloat) {
         self.init(red: gray/255.0 ,green: gray/255.0 ,blue: gray/255.0 ,alpha:1.0)
     }
  
@@ -23,13 +23,13 @@ public extension UIColor {
 
 
 // MARK: - 十六进制转换成颜色
-public extension UIColor {
+@objc public extension UIColor {
     
-    convenience init?(hexString: String) {
+   @objc convenience init?(hexString: String) {
         self.init(hexString: hexString, alpha: 1.0)
     }
     
-    convenience init?(hexString: String, alpha: Float) {
+   @objc convenience init?(hexString: String, alpha: Float) {
         let set = CharacterSet.whitespacesAndNewlines
         var hex = hexString.trimmingCharacters(in: set).uppercased()
         
@@ -55,11 +55,11 @@ public extension UIColor {
         }
     }
     
-    convenience init?(hexNumber: Int) {
+   @objc convenience init?(hexNumber: Int) {
         self.init(hexNumber: hexNumber, alpha: 1.0)
     }
     
-    convenience init?(hexNumber: Int, alpha: Float) {
+   @objc convenience init?(hexNumber: Int, alpha: Float) {
         guard (0x000000 ... 0xFFFFFF) ~= hexNumber else {
             self.init()
             return nil

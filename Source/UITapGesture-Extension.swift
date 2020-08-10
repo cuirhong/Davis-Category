@@ -9,17 +9,17 @@
 import Foundation
 import UIKit
 
-extension UITapGestureRecognizer:UIGestureRecognizerDelegate{
+@objc extension UITapGestureRecognizer:UIGestureRecognizerDelegate{
 
     
-    convenience public init(target:Any,selector:Selector) {
+   @objc convenience public  init(target:Any,selector:Selector) {
         self.init(target: target, action: selector)
         self.delegate = self
     }
 
 
     //解决手势与点击事件冲突
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    @objc  public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if let view = touch.view{
             let string = NSStringFromClass(view.classForCoder)
             if string == "UITableViewCellContentView" || string == "UICollectionViewCellContentView"{

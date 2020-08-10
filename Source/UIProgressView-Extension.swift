@@ -10,11 +10,10 @@ import Foundation
 import UIKit
 
 
-public extension UIProgressView{
+@objc public extension UIProgressView{
     
     
-    convenience init(trackTintColor:UIColor?=nil,progressTintColor:UIColor?=nil,cornerRadius:CGFloat?=nil){
-     
+   @objc convenience init(trackTintColor:UIColor?=nil,progressTintColor:UIColor?=nil,cornerRadius:Float=0.0){
         self.init()
         
         if let trackColor = trackTintColor{
@@ -24,11 +23,9 @@ public extension UIProgressView{
         if let progressColor = progressTintColor{
              self.progressTintColor = progressColor
         }
-        
-        
-        if let radius = cornerRadius{
-        
-            self.layer.cornerRadius = radius
+ 
+        if cornerRadius > 0{
+            self.layer.cornerRadius = CGFloat(cornerRadius)
             self.clipsToBounds = true
         }
 

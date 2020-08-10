@@ -9,8 +9,8 @@
 import UIKit
 
 /// 扩展textView的placeholder属性
-public extension UITextView {
-    convenience init(text:String,font:UIFont?=nil, textColor:UIColor?=nil,backColor:UIColor?=nil) {
+@objc public extension UITextView {
+   @objc convenience init(text:String,font:UIFont?=nil, textColor:UIColor?=nil,backColor:UIColor?=nil) {
         self.init()
         self.text = text
         self.font = font

@@ -9,10 +9,10 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public extension UIStackView{
+@objc public extension UIStackView{
  
     //MARK:- 创建stackView
-    convenience init(axis:NSLayoutConstraint.Axis = .horizontal, spacing:CGFloat=0, distribution: UIStackView.Distribution = .fillEqually,stackSubViews:[UIView]=[]){
+   @objc convenience init(axis:NSLayoutConstraint.Axis = .horizontal, spacing:CGFloat=0, distribution: UIStackView.Distribution = .fillEqually,stackSubViews:[UIView]=[]){
         self.init()
         self.axis = axis
         self.spacing = spacing

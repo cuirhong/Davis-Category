@@ -8,15 +8,13 @@
 
 import UIKit
 
-public extension UINavigationBar{
+@objc public extension UINavigationBar{
     
     private struct NavigationBarKeys{
         static var overlayKey = "overlayKey"
-        
-        
     }
     
-   private var overlay:UIView?{
+    private var overlay:UIView?{
         get{
             return objc_getAssociatedObject(self, &NavigationBarKeys.overlayKey) as? UIView
         }
@@ -29,7 +27,7 @@ public extension UINavigationBar{
     
     
     /// 设置导航栏的背景颜色
-    func nav_setBackgroundColor(backgroundColor:UIColor,isSetStatus:Bool=true){
+    @objc  func nav_setBackgroundColor(backgroundColor:UIColor,isSetStatus:Bool=true){
         if overlay == nil{
             
             var frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
@@ -53,16 +51,14 @@ public extension UINavigationBar{
     
     
     ///
-    func nav_setTranslationY(translationY:CGFloat){
+    @objc  func nav_setTranslationY(translationY:CGFloat){
         transform = CGAffineTransform(translationX: 0, y: translationY)
-        
-        
     }
     
     
     ///设置导航栏子元素的透明度
-    func nav_setElementsAlpha(alpha:CGFloat){
-      
+    @objc func nav_setElementsAlpha(alpha:CGFloat){
+        
         for (_,element) in subviews.enumerated() {
             if element.isKind(of: NSClassFromString("UINavigationItemView") as! UIView.Type) || element.isKind(of: NSClassFromString("UINavigationButton") as! UIButton.Type) || element.isKind(of: NSClassFromString("UINavBarPrompt") as! UIView.Type){
                 element.alpha = alpha
@@ -99,7 +95,7 @@ public extension UINavigationBar{
     }
     
     /// viewWillDisAppear调用
-    func navi_reset(){
+    @objc func navi_reset(){
         setBackgroundImage(nil, for: .default)
         overlay?.removeFromSuperview()
         overlay  = nil  

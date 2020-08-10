@@ -7,20 +7,19 @@
 //
 
 import UIKit
- 
-public extension UIImageView{
- 
+
+@objc public extension UIImageView{
+    
     // MARK:设置圆角图片,image必须不为空才有效
-    func setCornerRadius(){
+    @objc func setCornerRadius(){
         if self.image == nil{
             return
         }
         
         if self.bounds.size == CGSize.zero{
             return
-            
         }
-  
+        
         DispatchQueue.main.async {[weak self] in
             guard let `self` = self else {
                 return
@@ -46,7 +45,7 @@ public extension UIImageView{
             
         }
     }
-
+    
 }
 
 

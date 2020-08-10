@@ -9,9 +9,9 @@
 import UIKit
 
 // MARK: - 获取
-public extension UIDevice {
+@objc public extension UIDevice {
     
-    enum DD_DeviceType {
+    @objc enum DD_DeviceType:Int {
         case iPhone4;
         case iPhone4s;
         case iPhone5;
@@ -33,7 +33,7 @@ public extension UIDevice {
     }
     
     /// 获取当前设备类型
-    static func currentDevice()->DD_DeviceType{
+    static func customCurrentDevice()->DD_DeviceType{
         let identifier = UIDevice.currentDeviceName()
         switch identifier {
         case "iPhone3,1", "iPhone3,2", "iPhone3,3":     return .iPhone4

@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-public extension UIScrollView{
+@objc public extension UIScrollView{
     
-    convenience init(frame:CGRect=CGRect.zero,showsVerticalScrollIndicator:Bool=true,showsHorizontalScrollIndicator:Bool=true,isPage:Bool=false){
+   @objc convenience init(frame:CGRect=CGRect.zero,showsVerticalScrollIndicator:Bool=true,showsHorizontalScrollIndicator:Bool=true,isPage:Bool=false){
         
         self.init(frame: frame)
         

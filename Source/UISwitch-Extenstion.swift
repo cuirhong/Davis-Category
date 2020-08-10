@@ -10,15 +10,11 @@ import Foundation
 import UIKit
 
 
-public extension UISwitch{
+@objc public extension UISwitch{
 
-    convenience init(isOn:Bool?=nil,onTintColor:UIColor?=nil,tintColor:UIColor?=nil,thumbColor:UIColor?=nil,onImage:UIImage?=nil,offImage:UIImage?=nil,target: Any?=nil ,selector: Selector?=nil ) {
+   @objc convenience init(isOn:Bool=false,onTintColor:UIColor?=nil,tintColor:UIColor?=nil,thumbColor:UIColor?=nil,onImage:UIImage?=nil,offImage:UIImage?=nil,target: Any?=nil ,selector: Selector?=nil ) {
         self.init()
-        
-        if let on = isOn{
-        
-            self.isOn = on
-        }
+        self.isOn = isOn
         
         if let color = onTintColor{//开启状态下的颜色
             self.onTintColor = color

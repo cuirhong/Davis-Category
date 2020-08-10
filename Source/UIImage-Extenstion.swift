@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension UIImage{
+@objc public extension UIImage{
     
     //MARK:- 获取图片
     class  func getLocalImage(_ imageName:String?) -> UIImage? {
@@ -53,7 +53,7 @@ public extension UIImage{
         return nil
     }
     
-    class func getImageWithColor(color:UIColor)->UIImage{
+    class func getImage(color:UIColor)->UIImage{
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
@@ -67,7 +67,7 @@ public extension UIImage{
     
     
     //MARK:- 反转图片
-    func flipImage(orientation:UIImage.Orientation)->UIImage? {
+   @objc func flipImage(orientation:UIImage.Orientation)->UIImage? {
         
         
         var bounds = CGRect.zero
@@ -165,12 +165,10 @@ public extension UIImage{
     
     //MARK:- 根据一张图片获取一定大小的图片
     class func cutImage(image:UIImage,size:CGSize,alpha:CGFloat = 1)->UIImage{
-        
         UIGraphicsBeginImageContext(size)
         image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         UIGraphicsGetCurrentContext()?.setAlpha(alpha)
         let newImage:UIImage? = UIGraphicsGetImageFromCurrentImageContext()
-        
         UIGraphicsEndImageContext()
         return newImage ?? image
     }

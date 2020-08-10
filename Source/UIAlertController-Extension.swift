@@ -8,10 +8,8 @@
 
 import UIKit
 
-public extension UIAlertController{
-    
-
-
+@objc public extension UIAlertController{
+  
     class func alert(title:String?,message:String,style:UIAlertController.Style,doneTitle:String, doneAction:((UIAlertAction) -> Swift.Void)? = nil,cancelTitle:String?=nil, cancelAction: ((UIAlertAction) -> Swift.Void)? = nil,destruectiveTitle:String?=nil, destructiveAction:((UIAlertAction) -> Swift.Void)? = nil)->UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
        
@@ -59,7 +57,7 @@ public extension UIAlertController{
     }
     
     //MARK:- 修改title的颜色
-     func changeTitle(color:UIColor?=nil,font:UIFont?=nil){
+   @objc  func changeTitle(color:UIColor?=nil,font:UIFont?=nil){
         
         let alertControllerStr = NSMutableAttributedString(string: title ?? "")
          let range = NSMakeRange(0, NSString.init(string: title ?? "").length)
@@ -79,7 +77,7 @@ public extension UIAlertController{
     
     
     //MARK:- 修改message
-    func changeMessage(color:UIColor?=nil,font:UIFont?=nil){
+   @objc func changeMessage(color:UIColor?=nil,font:UIFont?=nil){
     
         let alertControllerStr = NSMutableAttributedString(string: message ?? "")
         let range = NSMakeRange(0, NSString.init(string: message ?? "").length)
@@ -96,10 +94,4 @@ public extension UIAlertController{
         setValue(alertControllerStr, forKey: key)
    
     }
-
-
-
-
-
-
 }

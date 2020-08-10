@@ -19,101 +19,121 @@ public extension UIButton
             setTitle(text, for: .selected)
         }
         if let hightext = highTitle{
-        
+            
             setTitle(hightext, for: .highlighted)
         }
         if let selImageN = selImageName{
             setImage(UIImage(named:selImageN), for: .selected)
         }
         if let backColor = backgroundColor{
-           self.backgroundColor = backColor
-        
+            self.backgroundColor = backColor
+            
         }
-    
+        
         if let newBackImageName = backImageName{
             setBackgroundImage(UIImage(named:newBackImageName), for: .normal)
-        
+            
         }
         if let hImage = highlightedImageName{
-      
+            
             let image = UIImage.getLocalImage(hImage)
             setImage(image, for: .highlighted)
-        
+            
         }
         if let image = highlightedImage{
-        
+            
             setBackgroundImage(image, for: .highlighted)
         }
         if let image = backImage{
             setBackgroundImage(image, for: .normal)
         }
         if let selImage = selBackImageName{
-          
-             setBackgroundImage(UIImage(named:selImage), for: .selected)
+            
+            setBackgroundImage(UIImage(named:selImage), for: .selected)
         }
         if let selImage = selBackImage{
-             setBackgroundImage(selImage, for: .selected)
+            setBackgroundImage(selImage, for: .selected)
         }
         
         if let color = backImageColor{
-        
-            setBackgroundImage(UIImage.getImageWithColor(color: color), for: .normal)
+            
+            setBackgroundImage(UIImage.getImage(color: color), for: .normal)
         }
         
         if let color = selBackImageColor{
-        
-            setBackgroundImage(UIImage.getImageWithColor(color: color), for: .selected)
+            
+            setBackgroundImage(UIImage.getImage(color: color), for: .selected)
         }
         
         if let size = cornerRadius{
-        
+            
             layer.cornerRadius = size
             clipsToBounds = true
         }
         
         if let newFont = font {
-         titleLabel?.font = newFont
-        
+            titleLabel?.font = newFont
+            
         }
         if let newColor = titleColor {
             
             setTitleColor(newColor, for: .normal)
         }
-       
+        
         if let newTitle = title {
             setTitle(newTitle, for: UIControl.State()) 
         }
-       
-       
+        
+        
         if let sel = selector {
             addTarget(target, action: sel, for: .touchUpInside)
         }
         
         if let selColor = selTitleColor{
             
-           setTitleColor(selColor, for: .selected)
+            setTitleColor(selColor, for: .selected)
         }
         
         if let color = titleHighColor{
-             setTitleColor(color, for: .highlighted)
-        
+            setTitleColor(color, for: .highlighted)
         }
-        
-       self.sizeToFit()
-        
+        self.sizeToFit()
     }
+}
+
+@objc public extension UIButton{
+    
+    @objc convenience init(title: String?,titleColor: UIColor?,font: UIFont?,imageName: String?=nil,target: Any?=nil ,selector: Selector?=nil) {
+        self.init()
+        if let newFont = font {
+            titleLabel?.font = newFont
+        }
+        if let newColor = titleColor {
+            setTitleColor(newColor, for: .normal)
+        }
+        if let newTitle = title{
+            setTitle(newTitle, for: UIControl.State())
+        }
+        if let imageN = imageName {
+            setImage(UIImage(named:imageN), for: UIControl.State())
+        }
+        if let sel = selector {
+            addTarget(target, action: sel, for: .touchUpInside)
+        }
+        sizeToFit()
+     }
     
     
     //MARK:- 设置按钮的图片和文字的位置
-    func positionLabelRespectToImage( position: UIView.ContentMode,
-                                      spacing: CGFloat,state:UIControl.State) {
-
+    @objc func positionLabelRespectToImage( position: UIView.ContentMode,
+                                            spacing: CGFloat,state:UIControl.State) {
+        
         let imageView = UIImageView(image: self.image(for: state))
         let  imageSize = imageView.bounds.size
         let titleFont = self.titleLabel?.font!
         var title = ""
         if let text = self.titleLabel?.text{
-          title = text
+            title = text
         }
         let titleSize = title.size(withAttributes: [NSAttributedString.Key.font: titleFont!])
         
@@ -144,6 +164,4 @@ public extension UIButton
         self.titleEdgeInsets = titleInsets
         self.imageEdgeInsets = imageInsets
     }
-
-    
 }

@@ -9,10 +9,8 @@
 import Foundation
 import UIKit
 
-public extension CADisplayLink{
-    
-
-
+@objc public extension CADisplayLink{
+ 
     class func displayLink(target:Any,selector:Selector,second:Int,isPause:Bool=false)->CADisplayLink{
         let link = CADisplayLink(target: target, selector: selector)
         if #available(iOS 10.0, *){
@@ -24,8 +22,6 @@ public extension CADisplayLink{
       
         link.isPaused = isPause
         return link
-    
-    
     }
 
 

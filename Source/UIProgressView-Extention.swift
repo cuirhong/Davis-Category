@@ -8,9 +8,9 @@
 
 import UIKit
 
-public extension UIProgressView{
+@objc public extension UIProgressView{
 
-    convenience init(frame: CGRect=CGRect.zero,bgColor:UIColor=UIColor.clear, tackColor:UIColor=UIColor.gray,progressColor:UIColor=UIColor.orange,progressValue:Float=0.0) {
+   @objc convenience init(frame: CGRect=CGRect.zero,bgColor:UIColor=UIColor.clear, tackColor:UIColor=UIColor.gray,progressColor:UIColor=UIColor.orange,progressValue:Float=0.0) {
         self.init(frame:frame)
         trackTintColor = tackColor
         progressTintColor = progressColor
