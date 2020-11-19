@@ -16,3 +16,7 @@ git tag 1.0.0
 ```
 pod trunk push Davis-Category.podspec --allow-warnings --verbose
 ```
+4. 如果search不到执行：
+```
+pod repo add Davis-Category https://github.com/cuirhong/Davis-Category.git
+```
