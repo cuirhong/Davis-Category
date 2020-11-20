@@ -12,8 +12,8 @@ import UIKit
     
     
     //MARK:- 获取当前时间
-    static func currentDate(isLoale:Bool=true)->Date{
-        return Date.currentDate(isLoale: isLoale)
+    static func currentDate(isLocal:Bool=true)->Date{
+        return Date.currentDate(isLocal: isLocal)
     }
     
     
@@ -24,7 +24,7 @@ import UIKit
     
     //MARK:- 根据北京时间获取当地时间,国外也适用,适配跨国时间
     static func loacalDate(formBeijingTimeinteval:TimeInterval,dataFormatter:String="yyyy-MM-dd HH:mm:ss")->DateComponents?{
-        return Date.loacalDate(formBeijingTimeinteval: formBeijingTimeinteval, dataFormatter: dataFormatter)
+        return Date.localDate(formBeijingTimeinteval: formBeijingTimeinteval, dataFormatter: dataFormatter)
     }
     
     //MARK:- 获取时间的一个机构体
@@ -76,9 +76,9 @@ public extension Date{
     }
 
     //MARK:- 获取当前时间
-    static func currentDate(isLoale:Bool=true)->Date{
+    static func currentDate(isLocal:Bool=true)->Date{
         let date = Date()
-        if isLoale{
+        if isLocal{
             let interval = NSTimeZone.system.secondsFromGMT(for: date)
             let localeDate = date.addingTimeInterval(TimeInterval(interval))
             return localeDate
@@ -110,7 +110,7 @@ public extension Date{
     
     
     //MARK:- 根据北京时间获取当地时间
-    static func loacalDate(_ fromBeijingTimeStr:String?=nil,formBeijingTimeinteval:TimeInterval?=nil,dataFormatter:String="yyyy-MM-dd HH:mm:ss")->DateComponents?{
+    static func localDate(_ fromBeijingTimeStr:String?=nil,formBeijingTimeinteval:TimeInterval?=nil,dataFormatter:String="yyyy-MM-dd HH:mm:ss")->DateComponents?{
         //北京时间与当地时间转换
         
         //北京时间转换成格林尼治时间
@@ -197,10 +197,6 @@ public extension Date{
         
         let date1 = String.getDateFromString(dateStr: dateString, formatter: dateFormatter)
         let date2 = String.getDateFromString(dateStr: date2String, formatter: dateFormatter)
-        if date1 == nil || date2 == nil {
-            
-            
-        }
         if let dateOne = date1,let dateTow = date2{
             if Calendar.current.isDate(dateOne, inSameDayAs: dateTow){
                 
