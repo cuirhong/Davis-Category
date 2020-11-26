@@ -30,7 +30,7 @@ import UIKit
     /**奔溃日志
      Invalid update: invalid number of sections. The number of sections contained in the table view after the update (1) must be
      */
-    @objc  func safeRealodData(){
+    @objc  func safeReloadData(){
         if(dataHasChanged){
             reloadData()
         }else{
@@ -38,7 +38,7 @@ import UIKit
         }
     }
     
-    //MARK:- 获取可见的cell
+    //MARK:- 获取可见的cellIndexPath
     @objc func getVisibleCellIndexPaths()->[IndexPath]{
         var mutableArray:[IndexPath] = []
         for cell in visibleCells {
