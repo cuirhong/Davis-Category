@@ -31,12 +31,26 @@ import UIKit
      Invalid update: invalid number of sections. The number of sections contained in the table view after the update (1) must be
      */
     @objc  func safeReloadData(){
-        if(dataHasChanged){
-            reloadData()
-        }else{
-            reloadRows(at: getVisibleCellIndexPaths(), with: .none)
-        }
+        DispatchQueue.main.async(execute: { [weak self] in
+            guard let weakSelf = self else{
+                return
+            }
+            if(weakSelf.dataHasChanged){
+                weakSelf.reloadData()
+            }else{
+                weakSelf.reloadRows(at: weakSelf.getVisibleCellIndexPaths(), with: .none)
+            }
+        })
     }
+    
+    
+    //MARK:- 主线程刷新tableView
+    @objc func mainQueueReloadData() {
+        DispatchQueue.main.async(execute: { [weak self] in
+            self?.reloadData()
+        })
+    }
+
     
     //MARK:- 获取可见的cellIndexPath
     @objc func getVisibleCellIndexPaths()->[IndexPath]{

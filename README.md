@@ -4,7 +4,7 @@
 ## 接入使用
 在Pofile文件中添加
 ```ruby
-pod 'Davis-Category', '1.0.0'
+pod 'Davis-Category', '1.1.0'
 ```
 执行pod install
 ```ruby
