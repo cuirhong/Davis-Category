@@ -45,6 +45,7 @@
 		375E2E3A24DBF017003ED0E7 /* UIView-Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E2E1D24DBF016003ED0E7 /* UIView-Extenstion.swift */; };
 		375E2E3B24DBF017003ED0E7 /* UIFont-Extentsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E2E1E24DBF016003ED0E7 /* UIFont-Extentsion.swift */; };
 		375E2E3C24DBF017003ED0E7 /* UITextField-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E2E1F24DBF016003ED0E7 /* UITextField-Extension.swift */; };
+		72765C1025932E01009B1C49 /* UICollectionView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72765C0F25932E01009B1C49 /* UICollectionView-Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		375E2E1D24DBF016003ED0E7 /* UIView-Extenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView-Extenstion.swift"; sourceTree = "<group>"; };
 		375E2E1E24DBF016003ED0E7 /* UIFont-Extentsion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont-Extentsion.swift"; sourceTree = "<group>"; };
 		375E2E1F24DBF016003ED0E7 /* UITextField-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField-Extension.swift"; sourceTree = "<group>"; };
+		72765C0F25932E01009B1C49 /* UICollectionView-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView-Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 				375E2E1E24DBF016003ED0E7 /* UIFont-Extentsion.swift */,
 				375E2E1F24DBF016003ED0E7 /* UITextField-Extension.swift */,
 				3706A75324E174CD006F0B0D /* UITableView-Extension.swift */,
+				72765C0F25932E01009B1C49 /* UICollectionView-Extension.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -393,6 +396,7 @@
 				375E2E3A24DBF017003ED0E7 /* UIView-Extenstion.swift in Sources */,
 				375E2E2024DBF017003ED0E7 /* Date-Extension.swift in Sources */,
 				375E2E2524DBF017003ED0E7 /* UIImageView-Extension.swift in Sources */,
+				72765C1025932E01009B1C49 /* UICollectionView-Extension.swift in Sources */,
 				375E2DD224DBEFDC003ED0E7 /* SceneDelegate.m in Sources */,
 				375E2E3024DBF017003ED0E7 /* UIBarButtonItem-Extension.swift in Sources */,
 				375E2E3924DBF017003ED0E7 /* UIScrollView-Extension.swift in Sources */,
